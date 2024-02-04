@@ -1,3 +1,21 @@
+// This file is a part of unetz
+// Copyright (C) 2024 AlanCui4080
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
@@ -166,13 +184,13 @@ namespace unetz
             std::function<void(std::unique_ptr<basic_netstream<char>>)>;
 
     private:
-        static constexpr auto          queued_connection_max = 16;
-        file_descriptor_type           acceptor_socket;
-        sockaddr_in6                   listen_address;
-        std::thread                    poller_thread;
+        static constexpr auto queued_connection_max = 16;
+        file_descriptor_type  acceptor_socket;
+        sockaddr_in6          listen_address;
+        std::thread           poller_thread;
 
-        std::mutex                     mutex_dispatcher_thread_list;
-        std::vector<std::thread>       dispatcher_thread_list;
+        std::mutex               mutex_dispatcher_thread_list;
+        std::vector<std::thread> dispatcher_thread_list;
 
         std::mutex                     mutex_produce_result_list;
         std::vector<std::future<void>> produce_result_list;
